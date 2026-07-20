@@ -1,0 +1,18 @@
+def make_multiplier(factor):
+    """Defines a function that returns a closure. The closure multiplies its input 'x' by 'factor'."""
+    def closure(x):
+        return x * factor
+    return closure
+
+# --- Demonstration of the Closure ---
+
+# 1. Create two multiplier functions
+times3 = make_multiplier(3)
+times10 = make_multiplier(10)
+
+# 2. Call these functions with sample inputs and print results
+result_times3 = times3(7)
+result_times10 = times10(7)
+
+print(f"times3(7) output: {result_times3}")
+print(f"times10(7) output: {result_times10}")
