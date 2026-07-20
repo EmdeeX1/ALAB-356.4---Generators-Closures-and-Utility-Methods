@@ -1,0 +1,36 @@
+import os
+import datetime
+
+def manage_diary():
+    filename = "diary.txt"
+    # Step 1: Check if file exists; if not, create it
+    try:
+        if not os.path.exists(filename):
+            with open(filename, "w") as f:
+                pass # Just create an empty file
+    except OSError as e:
+        print(f"Error checking or creating file: {e}")
+        return
+    
+    # Step 2: Prompt user for input
+    entry = input("Enter your diary entry: ")
+
+    # Step 3: Generate timestamp and append entry
+    try:
+        timestamp = str(datetime.datetime.now())
+        with open(filename, "a") as f:
+            f.write(f"[{timestamp}] {entry}\n")
+    except OSError as e:
+        print(f"Error writing to file: {e}")
+        return
+    
+    # Step 4: Read and print the entire file content
+    try:
+        print("\n--- All Diary Entries ---")
+        with open(filename, "r") as f:
+            print(f.read())
+    except OSError as e:
+        print(f"Error reading file: {e}")
+              
+if __name__ == "__main__":
+    manage_diary()
