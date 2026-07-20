@@ -1,0 +1,24 @@
+def gen_fibonacci(n):
+    """A generator function that yields the Fibonacci sequence up to the first n numbers."""
+    # Track how many numbers have been yielded
+    count = 0
+    # Initialize the first two terms of the Fibonacci sequence
+    a, b = 0, 1
+    # Loop until we have yielded exactly  n numbers
+    while count < n:
+        yield a
+        # Calculate next term and shift values forward
+        a, b = b, a + b
+        count += 1
+
+        # --- Test Code ---
+
+if __name__ == "__main__":
+    # Define how many terms to generate
+    num_terms = 15
+
+    print(f"--- Printing the first {num_terms} Fibonacci numbers ---")
+
+    # Iterate over the generator using a for-loop
+    for index, fib_num in enumerate (gen_fibonacci(num_terms), start=1):
+     print(f"Terms {index}: {fib_num}")
