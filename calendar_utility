@@ -1,0 +1,41 @@
+import calendar
+import datetime
+
+def main():
+    # 1. Prompt the user for a year and a month
+    print("--- Date & Calendar Utility ---")
+    try:
+        year = int(input("Enter a year(e.g. 2025): "))
+        month = int(input("Enter a month: "))
+
+        if month < 1 or month > 12:
+            print("Error: Month must be between 1 and 12.")
+            return
+    except ValueError:
+        print("Error: Please enter valid integer numbers.")
+        return
+    
+    # 2. Use the datetime module to determine today's date
+    today = datetime.datetime.today()
+
+    # 3. Use the calendar module to display the formatted grid
+    print(f"\n--- Calendar Grid for {calendar.month_name[month]} {year} ---")
+
+    # TextCalendar formats the month output as a clean string grid
+    cal = calendar.TextCalendar(calendar.SUNDAY)
+    month_calendar_string = cal.formatmonth(year, month)
+    print(month_calendar_string)
+
+    # 4. Check if today's date falls in the specified month and year
+    #print("--- Date Verification " + "-" * 3)
+    print(f"--- Date Verification  {'-' * 3}")
+    if today.year == year and today.month == month:
+        # Formats the current date beautifully (e.g., "July 20, 2026"
+        formatted_today = today.strftime("%B %d, %Y")
+
+        print(f"Match Found: Today is {formatted_today}.")
+    else:
+        print("Today's date does not fall  within the specified month and year.")
+
+if __name__ == "__main__":
+    main()
